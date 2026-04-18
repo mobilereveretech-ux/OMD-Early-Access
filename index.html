@@ -145,6 +145,8 @@
       const previewVideo = document.getElementById("appPreviewVideo");
       const fallback = document.getElementById("fallbackPreview");
 
+      previewVideo.playbackRate = 1.5;
+
       previewVideo.addEventListener("error", () => {
         previewVideo.classList.add("hidden");
         fallback.classList.remove("hidden");
