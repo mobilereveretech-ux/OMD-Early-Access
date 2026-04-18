@@ -116,19 +116,23 @@
       <section class="px-5 pb-8 pt-2">
         <div class="rounded-3xl border border-slate-200 bg-omdCream p-4">
           <h2 class="text-base font-bold">App UI Preview</h2>
-          <p class="mt-1 text-sm text-slate-600">This screenshot matches your app style and branding colors.</p>
+          <p class="mt-1 text-sm text-slate-600">This looped preview video matches your app style and branding colors.</p>
 
           <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-            <img
-              id="appScreenshot"
-              src="./mid.jpeg"
-              alt="One More Deal app UI screenshot"
+            <video
+              id="appPreviewVideo"
               class="h-auto w-full object-cover"
-            />
+              autoplay
+              loop
+              muted
+              playsinline
+            >
+              <source src="./howto.mp4" type="video/mp4" />
+            </video>
             <div id="fallbackPreview" class="hidden p-4">
               <div class="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-sm text-slate-500">
-                Add your screenshot file as
-                <span class="font-semibold text-omdBlue">one-more-deal-ui.jpg</span>
+                Add your video file as
+                <span class="font-semibold text-omdBlue">howto.mp4</span>
                 in this folder to display it here.
               </div>
             </div>
@@ -138,11 +142,16 @@
     </main>
 
     <script>
-      const screenshot = document.getElementById("appScreenshot");
+      const previewVideo = document.getElementById("appPreviewVideo");
       const fallback = document.getElementById("fallbackPreview");
 
-      screenshot.addEventListener("error", () => {
-        screenshot.classList.add("hidden");
+      previewVideo.addEventListener("error", () => {
+        previewVideo.classList.add("hidden");
+        fallback.classList.remove("hidden");
+      });
+
+      previewVideo.addEventListener("stalled", () => {
+        previewVideo.classList.add("hidden");
         fallback.classList.remove("hidden");
       });
     </script>
